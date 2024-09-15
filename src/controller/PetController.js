@@ -6,10 +6,7 @@ async function lerPet(req,res){
 
         const [rows] = await connection.query('select * from pet')
 
-        res.status(200).json({
-            message:'Lendo pets',
-            data:rows
-        })
+        res.status(200).send(rows)
 
         await connection.end() 
 
@@ -38,7 +35,7 @@ async function criarPet(req,res){
         res.status(201).json({
             message:'Pet criado com sucesso!',
             data: {
-                id: result.insertId,
+                idPet: result.insertId,
                 nome,
                 especie
             }
